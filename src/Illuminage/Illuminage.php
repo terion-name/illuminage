@@ -198,6 +198,22 @@ class Illuminage
     return $this->thumb($image, $size, $size);
   }
 
+	/**
+	 * Create a proportional resize that fits provided dimensions
+	 *
+	 * @param  string $image
+	 * @param  integer $size
+	 *
+	 * @return Image
+	 */
+	public function fit($image, $width, $height)
+	{
+		$image = new Image($this, $image);
+		$image->proportional($width, $height);
+
+		return $image;
+	}
+
   ////////////////////////////////////////////////////////////////////
   /////////////////////////// IMAGE PROCESSING ///////////////////////
   ////////////////////////////////////////////////////////////////////

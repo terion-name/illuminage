@@ -247,6 +247,31 @@ class Image extends Tag
     return $this;
   }
 
+	/**
+	 * Resize an Image, proportional style
+	 *
+	 * @param integer $width
+	 * @param integer $height
+	 */
+	public function proportional($width, $height)
+	{
+		$ratios = array(
+			$width  / $this->getOriginalSize()->getWidth(),
+			$height / $this->getOriginalSize()->getHeight()
+		);
+		if     ($this->getOriginalSize()->getWidth()  < $width)  $ratio = $ratios[1];
+		elseif ($this->getOriginalSize()->getHeight() < $height) $ratio = $ratios[0];
+		else   $ratio = min($ratios);
+
+		// Resize this to fit bounds
+		$resize = $this->getOriginalSize()->scale($ratio);
+		$salts['resize'] = array($resize);
+
+		$this->salts['resize'] = array($resize);
+
+		return $this;
+	}
+
   /**
    * Inverts the colors
    */
@@ -314,32 +339,32 @@ class Image extends Tag
    */
   protected function processThumbnail(array $salts)
   {
-    if (isset($salts['_thumbnail'])) {
-      $box = $salts['_thumbnail'];
-      unset($salts['_thumbnail']);
+	  if (isset($salts['_thumbnail'])) {
+		  $box = $salts['_thumbnail'];
+		  unset($salts['_thumbnail']);
 
-      // Compute thumbnail ratio
-      $ratios = array(
-        $box->getWidth()  / $this->getOriginalSize()->getWidth(),
-        $box->getHeight() / $this->getOriginalSize()->getHeight()
-      );
-      if     ($this->getOriginalSize()->getWidth()  < $box->getWidth())  $ratio = $ratios[0];
-      elseif ($this->getOriginalSize()->getHeight() < $box->getHeight()) $ratio = $ratios[1];
-      else   $ratio = max($ratios);
+		  // Compute thumbnail ratio
+		  $ratios = array(
+			  $box->getWidth()  / $this->getOriginalSize()->getWidth(),
+			  $box->getHeight() / $this->getOriginalSize()->getHeight()
+		  );
+		  if     ($this->getOriginalSize()->getWidth()  < $box->getWidth())  $ratio = $ratios[0];
+		  elseif ($this->getOriginalSize()->getHeight() < $box->getHeight()) $ratio = $ratios[1];
+		  else   $ratio = max($ratios);
 
-      // Resize this to fit bounds
-      $resize = $this->getOriginalSize()->scale($ratio);
-      $salts['resize'] = array($resize);
+		  // Resize this to fit bounds
+		  $resize = $this->getOriginalSize()->scale($ratio);
+		  $salts['resize'] = array($resize);
 
-      // Crop image
-      $salts['crop'] = array(
-        new Point(
-          max(0, round(($resize->getWidth()  - $box->getWidth())  / 2)),
-          max(0, round(($resize->getHeight() - $box->getHeight()) / 2))
-        ),
-        $box
-      );
-    }
+		  // Crop image
+		  $salts['crop'] = array(
+			  new Point(
+				  max(0, round(($resize->getWidth()  - $box->getWidth())  / 2)),
+				  max(0, round(($resize->getHeight() - $box->getHeight()) / 2))
+			  ),
+			  $box
+		  );
+	  }
 
     return $salts;
   }
