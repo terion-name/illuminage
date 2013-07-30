@@ -37,15 +37,15 @@ class ImageTest extends IlluminageTests
 
   public function testCanResizeOnTheFly()
   {
-    $this->assertEquals('http://:/a26155986d37968d8f5e0387c9515d6e.jpg', $this->image->resize(200, 250)->getPath());
-    $this->unlink('a26155986d37968d8f5e0387c9515d6e.jpg');
+    $this->assertEquals('http://:/5773f334688323970fe6c084f70557a8.jpg', $this->image->resize(200, 250)->getPath());
+    $this->unlink('5773f334688323970fe6c084f70557a8.jpg');
   }
 
   public function testCanApplyFilters()
   {
     $image = $this->image->resize(300, 300)->grayscale();
 
-    $this->assertEquals('http://:/e7341bc6ea7a50521508b97591e97c57.jpg', $image->getPath());
-    $this->unlink('e7341bc6ea7a50521508b97591e97c57.jpg');
+    $this->assertEquals('http://:/d3bc6aa8ca3bf86754e98b34b10ea18f.jpg', $image->getPath());
+    $this->unlink('d3bc6aa8ca3bf86754e98b34b10ea18f.jpg');
   }
 }
