@@ -259,11 +259,8 @@ class Image extends Tag
 			$width  / $this->getOriginalSize()->getWidth(),
 			$height / $this->getOriginalSize()->getHeight()
 		);
-		if     ($this->getOriginalSize()->getWidth()  < $width)  $ratio = $ratios[1];
-		elseif ($this->getOriginalSize()->getHeight() < $height) $ratio = $ratios[0];
-		else   $ratio = min($ratios);
+		$ratio = min($ratios);
 
-		// Resize this to fit bounds
 		$resize = $this->getOriginalSize()->scale($ratio);
 		$salts['resize'] = array($resize);
 
