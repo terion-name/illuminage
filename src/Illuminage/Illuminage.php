@@ -206,10 +206,10 @@ class Illuminage
 	 *
 	 * @return Image
 	 */
-	public function fit($image, $width, $height)
+	public function fit($image, $width, $height, $upscale = false)
 	{
 		$image = new Image($this, $image);
-		$image->proportional($width, $height);
+		$image->proportional($width, $height, $upscale);
 
 		return $image;
 	}

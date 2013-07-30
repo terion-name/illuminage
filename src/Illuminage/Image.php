@@ -253,13 +253,17 @@ class Image extends Tag
 	 * @param integer $width
 	 * @param integer $height
 	 */
-	public function proportional($width, $height)
+	public function proportional($width, $height, $upscale = false)
 	{
 		$ratios = array(
 			$width  / $this->getOriginalSize()->getWidth(),
 			$height / $this->getOriginalSize()->getHeight()
 		);
 		$ratio = min($ratios);
+
+		if ( $ratio > 1 && !$upscale ) {
+			return $this;
+		}
 
 		$resize = $this->getOriginalSize()->scale($ratio);
 		$salts['resize'] = array($resize);
