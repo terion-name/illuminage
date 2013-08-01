@@ -44,6 +44,15 @@ echo $thumb->grayscale()->onImage(function($image) {
 ## Installation
 
 * Add **"anahkiasen/illuminage":"dev-master"** in "require" section of composer.json
+	* To use *this* version of Illuminage (with fit support), add:
+	```js
+	"repositories":[
+        {
+            "type":"git",
+            "url":"https://github.com/terion-name/illuminage"
+        }
+    ],
+	```
 * Run command **composer update**
 * Add **'Illuminage\IlluminageServiceProvider'** in providers list in config/app.php
 * Add **'Illuminage' => 'Illuminage\Facades\Illuminage'** in aliases list in config/app.php
