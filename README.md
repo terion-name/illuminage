@@ -45,7 +45,7 @@ echo $thumb->grayscale()->onImage(function($image) {
 
 * Add **"anahkiasen/illuminage":"dev-master"** in "require" section of composer.json
 	* To use *this* version of Illuminage (with fit support), add:
-	```js
+	```
 	"repositories":[
         {
             "type":"git",
