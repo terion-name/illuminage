@@ -255,7 +255,7 @@ class Illuminage
   {
     return $this->app['url']->asset(
       $this->getOption('cache_folder').
-      $this->cache->getHashOf($image));
+      $this->cache->getHashedPathOf($image));
   }
 
   /**
