@@ -179,10 +179,14 @@ class Illuminage
    */
   public function thumb($image, $width, $height)
   {
-    $image = new Image($this, $image);
-    $image->thumbnail($width, $height);
+	  try {
+		  $image = $this->image($image);
+		  $image->thumbnail($width, $height);
+	  } catch (Exception $e) {
+		  return false;
+	  }
 
-    return $image;
+	  return $image;
   }
 
   /**
@@ -208,10 +212,15 @@ class Illuminage
 	 */
 	public function fit($image, $width, $height, $upscale = false)
 	{
-		$image = new Image($this, $image);
-		$image->proportional($width, $height, $upscale);
+		try {
+			$image = $this->image($image);
+			$image->proportional($width, $height, $upscale);
+		} catch (Exception $e) {
+			return false;
+		}
 
 		return $image;
+
 	}
 
   ////////////////////////////////////////////////////////////////////
