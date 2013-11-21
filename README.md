@@ -56,4 +56,4 @@ echo $thumb->grayscale()->onImage(function($image) {
 * Run command **composer update**
 * Add **'Illuminage\IlluminageServiceProvider'** in providers list in config/app.php
 * Add **'Illuminage' => 'Illuminage\Facades\Illuminage'** in aliases list in config/app.php
-* Run commands **php artisan asset:publish** and **php artisan config:publish anahkiasen/illuminage**
+* Run commands **php artisan asset:publish && php artisan config:publish anahkiasen/illuminage**
