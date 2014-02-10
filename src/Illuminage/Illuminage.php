@@ -251,6 +251,48 @@ class Illuminage {
 
 	}
 
+    /**
+     * Create a proportional to width resize
+     *
+     * @param  string $image
+     * @param  integer $width
+     *
+     * @return Image
+     */
+    public function width($image, $width) {
+
+        $image = $this->image($image);
+
+        if (!$image)
+            return new HtmlImage('', 'broken image');
+
+        $image->proportionalWidth($width);
+
+        return $image;
+
+    }
+
+    /**
+     * Create a proportional to height resize
+     *
+     * @param  string $image
+     * @param  integer $height
+     *
+     * @return Image
+     */
+    public function height($image, $height) {
+
+        $image = $this->image($image);
+
+        if (!$image)
+            return new HtmlImage('', 'broken image');
+
+        $image->proportionalHeight($height);
+
+        return $image;
+
+    }
+
 	////////////////////////////////////////////////////////////////////
 	/////////////////////////// IMAGE PROCESSING ///////////////////////
 	////////////////////////////////////////////////////////////////////

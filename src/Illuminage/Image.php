@@ -272,6 +272,39 @@ class Image extends Tag
 
 		return $this;
 	}
+	/**
+	 * Resize an Image, proportional to width
+	 *
+	 * @param integer $width
+	 */
+	public function proportionalWidth($width)
+	{
+		$ratio = $width  / $this->getOriginalSize()->getWidth();
+
+		$resize = $this->getOriginalSize()->scale($ratio);
+		$salts['resize'] = array($resize);
+
+		$this->salts['resize'] = array($resize);
+
+		return $this;
+	}
+
+	/**
+	 * Resize an Image, proportional to height
+	 *
+	 * @param integer $height
+	 */
+	public function proportionalHeight($height)
+	{
+		$ratio = $height  / $this->getOriginalSize()->getHeight();
+
+		$resize = $this->getOriginalSize()->scale($ratio);
+		$salts['resize'] = array($resize);
+
+		$this->salts['resize'] = array($resize);
+
+		return $this;
+	}
 
   /**
    * Inverts the colors
